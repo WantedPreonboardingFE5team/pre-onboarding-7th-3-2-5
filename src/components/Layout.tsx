@@ -16,6 +16,7 @@ import {
   BellOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Avatar, Badge } from 'antd';
+import AccountCreate from './AccountCreate';
 import router from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -127,7 +128,10 @@ export default function Style({ children, setToken }) {
         >
           {children}
         </Content>
-        <Footer style={{ textAlign: 'center', color: '#656565' }}>Copyright © December and Company Inc.</Footer>
+        <div>
+          <AccountCreate />
+          <Footer style={{ textAlign: 'center', color: '#656565' }}>Copyright © December and Company Inc.</Footer>
+        </div>
       </Layout>
     </Layout>
   );

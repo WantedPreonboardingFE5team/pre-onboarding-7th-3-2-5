@@ -8,8 +8,10 @@ import { dateFormat, comma, accountMasking } from '@/utils/formatting';
 
 import { Space, Table, Pagination } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { deleteAccount } from '@/apis/account';
 
 interface DataType {
+  id: number;
   user_id: string;
   broker_id: string | undefined;
   number: string;
@@ -86,13 +88,29 @@ export default function AccountList() {
       key: 'created_at',
     },
     {
-      title: 'Action',
+      title: '계좌관리',
       key: 'action',
-      render: (_) => (
-        <Space size="middle">
-          <a>Delete</a>
-        </Space>
-      ),
+      render: (_, record) => {
+        return (
+          <Space size="middle">
+            <button
+              style={{ border: 'none', backgroundColor: 'white', color: '#1890ff' }}
+              onClick={() => {
+                deleteAccount(record.id);
+                deleteHandler(record.id);
+                alert('삭제되었습니다.');
+              }}
+            >
+              삭제
+            </button>
+            <style jsx>{`
+              button {
+                cursor: pointer;
+              }
+            `}</style>
+          </Space>
+        );
+      },
     },
   ];
 
@@ -101,14 +119,15 @@ export default function AccountList() {
     return userData?.name;
   };
 
-  const deleteHandler = (number: string) => {
-    const newAccountList = accountList?.filter((item) => item.number !== number);
+  const deleteHandler = (id: number) => {
+    const newAccountList = accountList?.filter((item) => item.id !== id);
     setAccountList(newAccountList);
   };
 
   const data = accountList?.map((account, idx) => {
     return {
       key: idx,
+      id: account.id,
       user_id: userNameMatch(account.user_id),
       broker_id: getBrokerName(account.broker_id),
       number: account.number,

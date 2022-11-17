@@ -63,6 +63,20 @@ export const getSearchData = async (keyword: string) => {
   }
 };
 
+export const editAccountData = async (id: number, editData: object) => {
+  const token = getSessionStorage('token');
+  try {
+    const { data } = await instance.put(`/accounts/${id}`, editData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  } catch (err) {
+    console.log('error : ', err);
+  }
+};
+
 // TODO 추후 분리 예정
 export const getUserList = async () => {
   const token = getSessionStorage('token');
