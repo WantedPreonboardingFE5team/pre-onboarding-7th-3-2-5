@@ -127,7 +127,7 @@ export default function Style({ children, setToken }) {
         >
           {children}
         </Content>
-        <Footer style={{ textAlign: 'center', color: '#656565' }}>© December and Company Inc.</Footer>
+        <Footer style={{ textAlign: 'center', color: '#656565' }}>Copyright © December and Company Inc.</Footer>
       </Layout>
     </Layout>
   );

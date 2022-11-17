@@ -54,7 +54,7 @@ export default function Login({ setToken }: any) {
           </Form.Item>
         </Form>
       </Card>
-      <Footer style={{ textAlign: 'center', color: '#656565' }}>© December and Company Inc.</Footer>
+      <Footer style={{ textAlign: 'center', color: '#656565' }}>Copyright © December and Company Inc.</Footer>
     </Layout>
   );
 }
